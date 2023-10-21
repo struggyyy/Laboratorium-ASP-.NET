@@ -1,4 +1,4 @@
-﻿using Laboratorium_1.Models;
+﻿using Lab1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Numerics;
