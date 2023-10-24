@@ -1,0 +1,17 @@
+﻿@model Album
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Czy napewno chcesz usunąć album? </h1>
+<p>Nazwa albumu</p>
+<h3>@Model.Name</h3>
+<p>Zespół</p>
+<h3>@Model.Band</h3>
+<form asp-controller="Album" asp-action="Delete">
+    <input asp-action="Id" />
+    <button class="btn btn-danger" type="Submit">Tak</button>
+    <a class="btn btn-danger" asp-action="Index">Nie</a>
+</form>

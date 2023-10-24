@@ -1,0 +1,58 @@
+﻿@model Album
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Dodaj album </h1>
+
+<form asp-controller="Album" asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Name">Nazwa albumu</label>
+        <input class="form-control" asp-for="Name" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Band">Zespół</label>
+        <input class="form-control" asp-for="Band" />
+        <span class="text-danger" asp-validation-for="Band"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TrackList">Tracklista</label>
+        <input class="form-control" asp-for="TrackList" />
+        <span class="text-danger" asp-validation-for="TrackList"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Record">Miejsce w notowaniach</label>
+        <input class="form-control" asp-for="Record" />
+        <span class="text-danger" asp-validation-for="Record"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ReleaseDate">Data wydania</label>
+        <input class="form-control" asp-for="ReleaseDate" />
+        <span class="text-danger" asp-validation-for="ReleaseDate"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Duration">Czas trwania (godz:min)</label>
+        <input class="form-control" asp-for="Duration" />
+        <span class="text-danger" asp-validation-for="Duration"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Utwórz</button>
+
+    </div>
+</form>
