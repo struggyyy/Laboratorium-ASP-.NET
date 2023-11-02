@@ -7,36 +7,35 @@
 
 <h2>Lista Kontaktów</h2>
 if(Model.Count > 0){
-{
-    <table class="table">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Priority)
+        </th>
+        <th>
+            Akcje
+        </th>
+    </tr>
+    @foreach (var item in @Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Priority)
-            </th>
-            <th>
-                Akcje
-            </th>
-        </tr>
-        @foreach (var item in @Model)
-        {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.Email
-                </td>
-                <td>
-                    @item.Priority.GetDisplayName()
-                </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Priority.GetDisplayName()
+            </td>
 
-            </tr>
-        }
-    </table>
+        </tr>
+    }
+</table>
 }

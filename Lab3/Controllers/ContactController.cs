@@ -6,7 +6,7 @@ namespace Lab3.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly IContactService _contactService;
+        
         static readonly Dictionary<int, Contact> _contacts = new Dictionary<int, Contact>();
         static int id = 1;
 
