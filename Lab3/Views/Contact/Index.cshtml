@@ -5,37 +5,44 @@
 @{
 }
 
-<h2>Lista Kontaktów</h2>
-if(Model.Count > 0){
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model[0].Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model[0].Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model[0].Priority)
-        </th>
-        <th>
-            Akcje
-        </th>
-    </tr>
-    @foreach (var item in @Model)
-    {
-        <tr>
-            <td>
-                @item.Name
-            </td>
-            <td>
-                @item.Email
-            </td>
-            <td>
-                @item.Priority.GetDisplayName()
-            </td>
+<h1>
+    Lista kontaktów
+</h1>
+<a class="btn btn-primary" asp-controller="Contact" asp-action="Create">
+    Utwórz kontakt
+</a>
 
-        </tr>
-    }
-</table>
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(i => Model[0].Name)</th>
+                <th>@Html.DisplayNameFor(i => Model[0].Email)</th>
+                <th>@Html.DisplayNameFor(i => Model[0].Priority)</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Priority.GetDisplayName()
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-primary" asp-controller="Contact" asp-action="Update" asp-route-id="@item.Id">Edytuj</a>
+                        <a class="btn btn-outline-info" asp-controller="Contact" asp-action="Details" asp-route-id="@item.Id">Szczegóły</a>
+                        <a class="btn btn-outline-danger" asp-controller="Contact" asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

@@ -11,8 +11,10 @@
 <p>Email</p>
 <h3>@Model.Email</h3>
 <p>Priorytet</p>
+<h3>@Model.Priority</h3>
+
 <form asp-controller="Contact" asp-action="Delete">
-    <input asp-action="Id" />
-    <button class="btn btn-danger" type="Submit">Tak</button>
-    <a class="btn btn-danger" asp-action="Index">Nie</a>
+    <input asp-for="Id" />
+    <button class="btn btn-danger" type="submit">Tak</button>
+    <a class="btn btn-outline-primary" asp-action="Index">Nie</a>
 </form>

@@ -1,36 +1,43 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Lab3.Models;
 
-namespace Lab3.Models
+public class MemoryContactService : IContactService
 {
-    public class MemoryContactService : IContactService
+    private Dictionary<int, Contact> _items = new Dictionary<int, Contact>();
+
+    private IDateTimeProvider _dateTimeProvider;
+
+    public MemoryContactService(IDateTimeProvider dateTimeProvider)
     {
-        private Dictionary<int, Contact> _items = new Dictionary<int, Contact>();
-        public int Add(Contact item)
-        {
-            int id = _items.Keys.Count != 0 ? _items.Keys.Max() : 0;
-            item.Id = id + 1;
-            _items.Add(item.Id, item);
-            return item.Id;
-        }
+        _dateTimeProvider = dateTimeProvider;
+    }
 
-        public void Delete(int id)
-        {
-            _items.Remove(id);
-        }
+    public int Add(Contact item)
+    {
+        int id = _items.Keys.Count != 0 ? _items.Keys.Max() : 0;
+        item.Id = id + 1;
+        item.Created = _dateTimeProvider.dateNow();
+        _items.Add(item.Id, item);
+        return item.Id;
+    }
 
-        public List<Contact> FindAll()
-        {
-            return _items.Values.ToList();
-        }
+    public void Delete(int id)
+    {
+        _items.Remove(id);
+    }
 
-        public Contact? FindById(int id)
-        {
-            return _items[id];
-        }
+    public List<Contact> FindAll()
+    {
+        return _items.Values.ToList();
+    }
 
-        public void Update(Contact item)
-        {
-            _items[item.Id] = item;
-        }
+    public Contact? FindById(int id)
+    {
+        return _items[id];
+    }
+
+    public void Update(Contact item)
+    {
+        item.Created = _items[item.Id].Created;
+        _items[item.Id] = item;
     }
 }

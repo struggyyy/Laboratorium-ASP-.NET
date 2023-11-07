@@ -11,6 +11,8 @@ namespace Lab3
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IContactService, MemoryContactService>();
+            builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();
+            ////////////////////////////////////////////////////////////////////////////// builder.Services.AddSingleton<IAlbumService, MemoryAlbumService>();
 
             var app = builder.Build();
 

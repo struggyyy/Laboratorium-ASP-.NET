@@ -6,15 +6,17 @@ namespace Lab3.Controllers
 {
     public class ContactController : Controller
     {
-        
-        static readonly Dictionary<int, Contact> _contacts = new Dictionary<int, Contact>();
-        static int id = 1;
+        private readonly IContactService _contactService;
+
+        public ContactController(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
 
         public IActionResult Index()
         {
-            return View(_contacts.Values.ToList());
+            return View(_contactService.FindAll());
         }
-
 
         [HttpGet]
         public IActionResult Create()
@@ -27,19 +29,16 @@ namespace Lab3.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Id = id++;
-                _contacts[model.Id] = model;
-
+                _contactService.Add(model);
                 return RedirectToAction("Index");
             }
-
             return View();
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_contacts[id]);
+            return View(_contactService.FindById(id));
         }
 
         [HttpPost]
@@ -47,37 +46,29 @@ namespace Lab3.Controllers
         {
             if (ModelState.IsValid)
             {
-                _contacts[model.Id] = model;
+                _contactService.Update(model);
                 return RedirectToAction("Index");
             }
             return View();
         }
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            return View(_contacts[id]);
+            return View(_contactService.FindById(id));
         }
 
         [HttpPost]
         public IActionResult Delete(Contact model)
         {
-            _contacts.Remove(model.Id);
+            _contactService.Delete(model.Id);
             return RedirectToAction("Index");
         }
 
-
-        [HttpGet]
         public IActionResult Details(int id)
         {
-            return View(_contacts[id]);
-
-        }
-
-        [HttpPost]
-        public void Details(Contact model)
-        {
-            
+            return View(_contactService.FindById(id));
         }
     }
-
 }
+ 
