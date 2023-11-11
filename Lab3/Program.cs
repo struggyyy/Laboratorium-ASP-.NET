@@ -1,3 +1,4 @@
+using Data;
 using Lab3.Models;
 
 namespace Lab3
@@ -11,8 +12,13 @@ namespace Lab3
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IContactService, MemoryContactService>();
+            builder.Services.AddSingleton<IAlbumService, MemoryAlbumService>();
             builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();
-            ////////////////////////////////////////////////////////////////////////////// builder.Services.AddSingleton<IAlbumService, MemoryAlbumService>();
+            builder.Services.AddTransient<IContactService, EFContactService>();
+            builder.Services.AddTransient<IAlbumService, EFAlbumService>();
+            builder.Services.AddDbContext<AppDbContext>();
+            
+            
 
             var app = builder.Build();
 
@@ -24,7 +30,7 @@ namespace Lab3
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection();  
             app.UseStaticFiles();
 
             app.UseRouting();

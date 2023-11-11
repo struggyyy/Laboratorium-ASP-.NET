@@ -1,0 +1,43 @@
+﻿using Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Data
+{
+    public class AppDbContext : DbContext
+    {
+        private string Path { get; set; }
+        public DbSet<ContactEntity> Contacts { get; set; }
+        public DbSet<AlbumEntity> Albums { get; set; }
+        public AppDbContext()
+        {
+            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            Path = System.IO.Path.Join(path, "contacts.db");
+            Path = System.IO.Path.Join(path, "albums.db");
+
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite($"Data source={Path}");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ContactEntity>().HasData(
+                new ContactEntity() { ContactId = 1, Name = "Adam", Email = "adam@wsei.pl", Phone = "354353637", Birth = DateTime.Parse("2000-10-10") },
+                new ContactEntity() { ContactId = 2, Name = "Jakub", Email = "jakubstr@gmail.com", Phone = "123234345", Birth = DateTime.Parse("2002-03-12") },
+                new ContactEntity() { ContactId = 3, Name = "Dylan", Email = "cooldylan@gmail.com", Phone = "456567678", Birth = DateTime.Parse("1999-11-23") }
+                );
+            modelBuilder.Entity<AlbumEntity>().HasData(
+                new AlbumEntity() { AlbumId = 1, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") },
+                new AlbumEntity() { AlbumId = 2, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") },
+                new AlbumEntity() { AlbumId = 3, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") }
+                );
+        }
+
+    }
+}

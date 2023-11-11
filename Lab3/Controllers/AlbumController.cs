@@ -1,20 +1,23 @@
 ﻿using Lab3.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Lab3.Controllers
 {
     public class AlbumController : Controller
     {
+        private readonly IAlbumService _albumService;
 
-        static readonly Dictionary<int, Album> _albums = new Dictionary<int, Album>();
-        static int id = 1;
+        public AlbumController(IAlbumService albumService)
+        {
+            _albumService = albumService;
+        }
 
         public IActionResult Index()
         {
-            return View(_albums);
+            return View(_albumService.FindAll());
         }
-
 
         [HttpGet]
         public IActionResult Create()
@@ -27,19 +30,16 @@ namespace Lab3.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Id = id++;
-                _albums[model.Id] = model;
-
+                _albumService.Add(model);
                 return RedirectToAction("Index");
             }
-
             return View();
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_albums[id]);
+            return View(_albumService.FindById(id));
         }
 
         [HttpPost]
@@ -47,36 +47,28 @@ namespace Lab3.Controllers
         {
             if (ModelState.IsValid)
             {
-                _albums[model.Id] = model;
+                _albumService.Update(model);
                 return RedirectToAction("Index");
             }
             return View();
         }
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            return View(_albums[id]);
+            return View(_albumService.FindById(id));
         }
 
         [HttpPost]
         public IActionResult Delete(Album model)
         {
-            _albums.Remove(model.Id);
+            _albumService.Delete(model.Id);
             return RedirectToAction("Index");
         }
 
-
-        [HttpGet]
         public IActionResult Details(int id)
         {
-            return View(_albums[id]);
-
-        }
-
-        [HttpPost]
-        public void Details(Album model)
-        {
-
+            return View(_albumService.FindById(id));
         }
     }
 

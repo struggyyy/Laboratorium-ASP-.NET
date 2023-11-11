@@ -7,15 +7,16 @@
 
 <h1>Szczegóły</h1>
 <br />
-<p>Nazwa albumu:</p>
-<h4>@Model.Name</h4>
-<p>Zespół:</p>
-<h4>@Model.Band</h4>
-<p>Tracklista:</p>
-<h4>@Model.TrackList</h4>
-<p>Miejsce w notowaniach:</p>
-<h4>@Model.Record</h4>
-<p>Data wydania:</p>
-<h4>@Model.ReleaseDate</h4>
-<p>Czas trwania (godz:min):</p>
-<h4>@Model.Duration</h4>
+    <div style="padding: 20px; background-color: rgb(990, 161, 123);
+               border-radius: 25px; box-shadow: 0 0 15px rgb(250, 182, 145);
+               color: white;"
+     class="mb-3">
+<h5>Nazwa albumu: @Model.Name</h5>
+<h5>Zespół: @Model.Band</h5>
+<h5>Tracklista: @Model.TrackList</h5>
+<h5 class="">Miejsce w notowaniach: @Model.Record</h5>
+<h5 class="">Data wydania: @Model.ReleaseDate</h5>
+<h5 class="">Czas trwania: @Model.Duration</h5>
+<h5 class="">Data dodania albumu do systemu: @Model.PublicationDate</h5>
+</div>
+<a class="btn btn-outline-primary" asp-action="Index">Powrót</a>

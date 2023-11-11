@@ -1,4 +1,4 @@
-﻿@model Dictionary<int, Album>
+﻿@model List<Album>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -7,41 +7,43 @@
 
 <h1>Lista Albumów</h1>
 
-<a class="btn btn-primary" asp-controller="Album" asp-action="Create">Utwórz album!</a>
+<a class="btn btn-primary" asp-controller="Album" asp-action="Create">
+    Dodaj Album!
+</a>
 
-<table class="table"
-    <thead>
-    <tr>
-        <th>
-            Nazwa albumu
-        </th>
+@if (Model.Count > 0)
+{
+    <table class="table">
 
-        <th>
-            Zespół
-        </th>
-
-        <th>
-            Akcje
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in @Model)
-        {
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(i => Model[0].Name)</th>
+                <th>@Html.DisplayNameFor(i => Model[0].Band)</th>
+                <th>@Html.DisplayNameFor(i => Model[0].PublicationDate)</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            { 
+            
                     <tr>
                         <td>
-                    @item.Value.Name
+                            @item.Name
                         </td>
                         <td>
-                    @item.Value.Band
+                            @item.Band
                         </td>
                         <td>
-                            <a class="btn btn-info" asp-controller="Album" asp-action="Update" asp-route-id=@item.Key>Edytuj</a>
-                            <a class="btn btn-success" asp-controller="Album" asp-action="Details" asp-route-id=@item.Key>Szczegóły</a>
-                            <a class="btn btn-danger" asp-controller="Album" asp-action="Delete" asp-route-id=@item.Key>Usuń</a>
+                            @item.PublicationDate
                         </td>
-
+                        <td>
+                            <a class="btn btn-outline-primary" asp-controller="Album" asp-action="Update" asp-route-id="@item.Id">Edytuj</a>
+                            <a class="btn btn-outline-info" asp-controller="Album" asp-action="Details" asp-route-id="@item.Id">Szczegóły</a>
+                            <a class="btn btn-outline-danger" asp-controller="Album" asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                        </td>
                     </tr>
-        }
-
-    </tbody>
+            }
+        </tbody>
+    </table>
+}

@@ -6,46 +6,46 @@
 @{
 }
 
-<h1>Dodaj album </h1>
+<h1>Dodaj album</h1>
 
 <form asp-controller="Album" asp-action="Create" method="post">
 
     <div class="mb-3">
-        <label asp-for="Name">Nazwa albumu</label>
+        <label asp-for="Name"></label>
         <input class="form-control" asp-for="Name" />
         <span class="text-danger" asp-validation-for="Name"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Band">Zespół</label>
+        <label asp-for="Band"></label>
         <input class="form-control" asp-for="Band" />
         <span class="text-danger" asp-validation-for="Band"></span>
 
     </div>
 
     <div class="mb-3">
-        <label asp-for="TrackList">Tracklista</label>
+        <label asp-for="TrackList"></label>
         <input class="form-control" asp-for="TrackList" />
         <span class="text-danger" asp-validation-for="TrackList"></span>
 
     </div>
 
     <div class="mb-3">
-        <label asp-for="Record">Miejsce w notowaniach</label>
+        <label asp-for="Record"></label>
         <input class="form-control" asp-for="Record" />
         <span class="text-danger" asp-validation-for="Record"></span>
 
     </div>
 
     <div class="mb-3">
-        <label asp-for="ReleaseDate">Data wydania</label>
+        <label asp-for="ReleaseDate"></label>
         <input class="form-control" asp-for="ReleaseDate" />
         <span class="text-danger" asp-validation-for="ReleaseDate"></span>
 
     </div>
 
     <div class="mb-3">
-        <label asp-for="Duration">Czas trwania (godz:min)</label>
+        <label asp-for="Duration"></label>
         <input class="form-control" asp-for="Duration" />
         <span class="text-danger" asp-validation-for="Duration"></span>
 
