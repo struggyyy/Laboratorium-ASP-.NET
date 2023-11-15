@@ -12,6 +12,7 @@ namespace Data
     {
         private string Path { get; set; }
         public DbSet<ContactEntity> Contacts { get; set; }
+        public DbSet<OrganizationEntity> Organizations { get; set; }
         public DbSet<AlbumEntity> Albums { get; set; }
         public AppDbContext()
         {
@@ -27,6 +28,29 @@ namespace Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ContactEntity>()
+                .HasOne(c => c.Organization)
+                .WithMany(o => o.Contacts)
+                .HasForeignKey(c => c.OrganizationId);
+
+            modelBuilder.Entity<OrganizationEntity>()
+                .HasData(
+                new OrganizationEntity()
+                {
+                    Id = 101,
+                    Name = "WSEI",
+                    Description = "Uczelnia wyższa",
+              
+                },
+                 new OrganizationEntity()
+                 {
+                     Id = 102,
+                     Name = "Comarch",
+                    Description = "IT Company",
+                   
+                 }
+
+                );
             modelBuilder.Entity<ContactEntity>().HasData(
                 new ContactEntity() { ContactId = 1, Name = "Adam", Email = "adam@wsei.pl", Phone = "354353637", Birth = DateTime.Parse("2000-10-10") },
                 new ContactEntity() { ContactId = 2, Name = "Jakub", Email = "jakubstr@gmail.com", Phone = "123234345", Birth = DateTime.Parse("2002-03-12") },
@@ -36,6 +60,27 @@ namespace Data
                 new AlbumEntity() { AlbumId = 1, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") },
                 new AlbumEntity() { AlbumId = 2, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") },
                 new AlbumEntity() { AlbumId = 3, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") }
+                );
+            modelBuilder.Entity<OrganizationEntity>()
+                .OwnsOne(o => o.Address)
+                .HasData(
+                new
+                {
+                    OrganizationEntityId = 101,
+                    City = "Kraków",
+                    Street = "św. Filipa 17",
+                    PostalCode = "31-150",
+                    OrganizationId = 101
+                },
+                new
+                {
+                    OrganizationEntityId = 102,
+                    City = "Comarch",
+                    Street = "św. Filipa 17",
+                    PostalCode = "31-150",
+                    OrganizationId = 102
+                }
+
                 );
         }
 

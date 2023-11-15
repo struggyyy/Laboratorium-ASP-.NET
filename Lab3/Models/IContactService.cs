@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lab3.Models
 {
@@ -9,5 +10,6 @@ namespace Lab3.Models
         List<Contact> FindAll();
         void Delete(int id);
         void Update(Contact contact);
+        List<OrganizationEntity> FindAllOrganizations();
     }
 }

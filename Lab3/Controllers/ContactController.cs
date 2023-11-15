@@ -1,6 +1,8 @@
 ﻿using Lab3.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection.Metadata.Ecma335;
+using System.Text.RegularExpressions;
 
 namespace Lab3.Controllers
 {
@@ -21,7 +23,41 @@ namespace Lab3.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            List<SelectListItem> organizations =
+                _contactService.FindAllOrganizations()
+                .Select(e=> new SelectListItem()
+                {
+                    Text = e.Name,
+                    Value = e.Id.ToString()
+                })
+                .ToList();
+            Contact model = new Contact();
+            model.OrganizationList = organizations;
+            return View(model);
+        }
+        private List<SelectListItem> CreateOrganizationItemList()
+        {
+            var gr = new SelectListGroup()
+            {
+                Name = "Organizacje",
+            };
+            return _contactService.FindAllOrganizations().Select(e=> new SelectListItem()
+            {
+                Text = e.Name,
+                Value = e.Id.ToString(),
+                Group = gr
+            })
+                .Append(new SelectListItem()
+                {
+                    Text = "Brak Organizacji",
+                    Value = "",
+                    Selected = true,
+                    Group = new SelectListGroup()
+                    {
+                        Name = "Brak"
+                    }
+                })
+                .ToList();
         }
 
         [HttpPost]
@@ -32,7 +68,8 @@ namespace Lab3.Controllers
                 _contactService.Add(model);
                 return RedirectToAction("Index");
             }
-            return View();
+            model.OrganizationList = CreateOrganizationItemList();
+            return View(model);
         }
 
         [HttpGet]
