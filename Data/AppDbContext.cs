@@ -52,9 +52,9 @@ namespace Data
 
                 );
             modelBuilder.Entity<ContactEntity>().HasData(
-                new ContactEntity() { ContactId = 1, Name = "Adam", Email = "adam@wsei.pl", Phone = "354353637", Birth = DateTime.Parse("2000-10-10") },
-                new ContactEntity() { ContactId = 2, Name = "Jakub", Email = "jakubstr@gmail.com", Phone = "123234345", Birth = DateTime.Parse("2002-03-12") },
-                new ContactEntity() { ContactId = 3, Name = "Dylan", Email = "cooldylan@gmail.com", Phone = "456567678", Birth = DateTime.Parse("1999-11-23") }
+                new ContactEntity() { ContactId = 1, Name = "Adam", Email = "adam@wsei.pl", Phone = "354353637", Birth = DateTime.Parse("2000-10-10"), OrganizationId = 101 },
+                new ContactEntity() { ContactId = 2, Name = "Jakub", Email = "jakubstr@gmail.com", Phone = "123234345", Birth = DateTime.Parse("2002-03-12"), OrganizationId = 102 },
+                new ContactEntity() { ContactId = 3, Name = "Dylan", Email = "cooldylan@gmail.com", Phone = "456567678", Birth = DateTime.Parse("1999-11-23"), OrganizationId = 103 }
                 );
             modelBuilder.Entity<AlbumEntity>().HasData(
                 new AlbumEntity() { AlbumId = 1, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") },
@@ -69,18 +69,15 @@ namespace Data
                     OrganizationEntityId = 101,
                     City = "Kraków",
                     Street = "św. Filipa 17",
-                    PostalCode = "31-150",
-                    OrganizationId = 101
+                    PostalCode = "31-150"
                 },
                 new
                 {
                     OrganizationEntityId = 102,
                     City = "Comarch",
-                    Street = "św. Filipa 17",
-                    PostalCode = "31-150",
-                    OrganizationId = 102
+                    Street = "Rozwoju 1/4",
+                    PostalCode = "36-160"
                 }
-
                 );
         }
 

@@ -6,7 +6,7 @@ namespace Lab3.Models
 {
     public class EFContactService : IContactService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public EFContactService(AppDbContext context)
         {
@@ -41,12 +41,15 @@ namespace Lab3.Models
 
         public Contact? FindById(int id)
         {
-            return ContactMapper.FromEntity(_context.Contacts.Find(id));
+            var find = _context.Contacts.Find(id);
+            return find is null ? null : ContactMapper.FromEntity(find);
         }
 
-        public void Update(Contact contact)
+        public void Update(Contact model)
         {
-            _context.Contacts.Update(ContactMapper.ToEntity(contact));
+            var entity = ContactMapper.ToEntity(model);
+            _context.Update(entity);
+            _context.SaveChanges();
         }
     }
 }

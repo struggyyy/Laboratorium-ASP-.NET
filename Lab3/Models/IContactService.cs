@@ -8,7 +8,7 @@ namespace Lab3.Models
         int Add(Contact contact);
         Contact? FindById(int id);
         List<Contact> FindAll();
-        void Delete(int id);
+        void DeleteById(int id);
         void Update(Contact contact);
         List<OrganizationEntity> FindAllOrganizations();
     }
