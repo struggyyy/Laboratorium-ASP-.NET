@@ -9,7 +9,14 @@ namespace Lab3
         {
             var builder = WebApplication.CreateBuilder(args);
 
+           // builder.Services.AddDefaultIdentity<IdentityUser>
+                //.AddRoles<IdentityRole>()
+                //.
+
             // Add services to the container.
+            //nowy
+            builder.Services.AddRazorPages();
+            builder.Services.AddSession();
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IContactService, MemoryContactService>();
             builder.Services.AddSingleton<IAlbumService, MemoryAlbumService>();
@@ -34,8 +41,10 @@ namespace Lab3
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
+            app.MapRazorPages();
 
             app.MapControllerRoute(
                 name: "default",

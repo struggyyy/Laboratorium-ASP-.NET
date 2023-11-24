@@ -1,4 +1,5 @@
 ﻿using Lab3.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection.Metadata.Ecma335;
@@ -6,6 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Lab3.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;
@@ -15,6 +17,7 @@ namespace Lab3.Controllers
             _contactService = contactService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(_contactService.FindAll());
