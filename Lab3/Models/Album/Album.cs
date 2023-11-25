@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Lab3.Models
+namespace Lab3.Models.Album
 {
     public class Album
     {

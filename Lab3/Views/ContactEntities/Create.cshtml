@@ -32,6 +32,11 @@
                 <input asp-for="Birth" class="form-control" />
                 <span asp-validation-for="Birth" class="text-danger"></span>
             </div>
+
+            <div class="mb-3">
+                @*<select class="form-control" asp-for="OrganizationId" asp-items="@Model.OrganizationList"></select>*@
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

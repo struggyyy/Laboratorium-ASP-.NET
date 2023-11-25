@@ -1,4 +1,7 @@
-﻿using Lab3.Models;
+﻿using Data.Entities;
+using Lab3.Models;
+using Lab3.Models.Contact;
+using Microsoft.EntityFrameworkCore;
 
 public class MemoryContactService : IContactService
 {
@@ -20,7 +23,7 @@ public class MemoryContactService : IContactService
         return item.Id;
     }
 
-    public void Delete(int id)
+    public void DeleteById(int id)
     {
         _items.Remove(id);
     }
@@ -29,7 +32,10 @@ public class MemoryContactService : IContactService
     {
         return _items.Values.ToList();
     }
-
+    public List<OrganizationEntity> FindAllOrganizations()
+    {
+        throw new NotImplementedException();
+    }
     public Contact? FindById(int id)
     {
         return _items[id];

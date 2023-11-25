@@ -1,4 +1,4 @@
-﻿using Lab3.Models;
+﻿using Lab3.Models.Contact;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,22 +21,6 @@ namespace Lab3.Controllers
         public IActionResult Index()
         {
             return View(_contactService.FindAll());
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            List<SelectListItem> organizations =
-                _contactService.FindAllOrganizations()
-                .Select(e=> new SelectListItem()
-                {
-                    Text = e.Name,
-                    Value = e.Id.ToString()
-                })
-                .ToList();
-            Contact model = new Contact();
-            model.OrganizationList = organizations;
-            return View(model);
         }
         private List<SelectListItem> CreateOrganizationItemList()
         {
@@ -63,6 +47,23 @@ namespace Lab3.Controllers
                 .ToList();
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            List<SelectListItem> organizations =
+                _contactService.FindAllOrganizations()
+                .Select(e=> new SelectListItem()
+                {
+                    Text = e.Name,
+                    Value = e.Id.ToString()
+                })
+                .ToList();
+            Contact model = new Contact();
+            model.OrganizationList = organizations;
+            return View(model);
+        }
+        
+
         [HttpPost]
         public IActionResult Create(Contact model)
         {
@@ -78,7 +79,10 @@ namespace Lab3.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_contactService.FindById(id));
+            var contact = _contactService.FindById(id);
+            if (contact != null)
+                contact.OrganizationList = CreateOrganizationItemList();
+            return View(contact);
         }
 
         [HttpPost]
@@ -101,7 +105,7 @@ namespace Lab3.Controllers
         [HttpPost]
         public IActionResult Delete(Contact model)
         {
-            _contactService.Delete(model.Id);
+            _contactService.DeleteById(model.Id);
             return RedirectToAction("Index");
         }
 

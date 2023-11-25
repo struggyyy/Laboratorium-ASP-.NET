@@ -1,7 +1,7 @@
 ﻿using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lab3.Models
+namespace Lab3.Models.Contact
 {
     public interface IContactService
     {

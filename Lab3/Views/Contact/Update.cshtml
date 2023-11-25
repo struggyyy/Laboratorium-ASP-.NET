@@ -37,6 +37,11 @@
     </div>
 
     <div class="mb-3">
+        <label>Organizacja</label>
+        <select class="form-control" asp-for="OrganizationId" asp-items="@Model.OrganizationList"></select>
+    </div>
+
+    <div class="mb-3">
         <button class="btn-primary" type="submit">Zapisz</button>
     </div>
 </form>

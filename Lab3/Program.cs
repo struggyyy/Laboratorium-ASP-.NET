@@ -1,5 +1,7 @@
 using Data;
 using Lab3.Models;
+using Lab3.Models.Album;
+using Lab3.Models.Contact;
 
 namespace Lab3
 {

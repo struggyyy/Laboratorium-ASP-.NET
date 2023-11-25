@@ -1,4 +1,4 @@
-﻿using Lab3.Models;
+﻿using Lab3.Models.Album;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using System.Reflection.Metadata.Ecma335;

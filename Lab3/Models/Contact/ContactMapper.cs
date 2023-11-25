@@ -1,6 +1,6 @@
 ﻿using Data.Entities;
 
-namespace Lab3.Models
+namespace Lab3.Models.Contact
 {
     public class ContactMapper
     {
@@ -26,7 +26,7 @@ namespace Lab3.Models
                 Email = model.Email,
                 Phone = model.Phone,
                 Birth = model.Birth,
-                OrganizationId = (int)model.OrganizationId,
+                OrganizationId = model.OrganizationId,
             };
         }
     }

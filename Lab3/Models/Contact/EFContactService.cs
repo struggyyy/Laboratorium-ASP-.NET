@@ -2,7 +2,7 @@
 using Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lab3.Models
+namespace Lab3.Models.Contact
 {
     public class EFContactService : IContactService
     {
@@ -20,18 +20,22 @@ namespace Lab3.Models
             return e.Entity.ContactId;
         }
 
-        public void Delete(int id)
+        public void DeleteById(int id)
         {
-            ContactEntity? find = _context.Contacts.Find(id);
+            var find = _context.Contacts.Find(id);
             if (find != null)
             {
                 _context.Contacts.Remove(find);
+                _context.SaveChanges();
             }
         }
 
         public List<Contact> FindAll()
         {
-            return _context.Contacts.Select(e => ContactMapper.FromEntity(e)).ToList();
+            return _context
+                .Contacts
+                .Select(e => ContactMapper.FromEntity(e))
+                .ToList();
         }
 
         public List<OrganizationEntity> FindAllOrganizations()
