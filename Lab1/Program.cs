@@ -1,4 +1,4 @@
-namespace Laboratorium_1
+namespace Lab1
 {
     public class Program
     {

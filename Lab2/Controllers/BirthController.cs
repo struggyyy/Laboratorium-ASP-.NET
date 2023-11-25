@@ -4,22 +4,21 @@ using System.Diagnostics;
 
 namespace Lab2.Controllers
 {
-    public class CalculatorController : Controller
+    public class BirthController : Controller
     {
+        public IActionResult BirthForm()
+        {
+            return View();
+        }
 
-        [HttpPost]
-        public IActionResult Result([FromForm] Calculator model)
+        public IActionResult BirthResult([FromForm] Birth model)
         {
             if (!model.IsValid())
             {
                 return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
-            return View(model);
-        }
 
-        public IActionResult Form()
-        {
-            return View();
+            return View(model);
         }
     }
 }

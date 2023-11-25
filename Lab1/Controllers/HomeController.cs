@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Numerics;
 
-namespace Laboratorium_1.Controllers
+namespace Lab1.Controllers
 {
     public class HomeController : Controller
     {

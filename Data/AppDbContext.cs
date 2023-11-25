@@ -15,13 +15,13 @@ namespace Data
         private string Path { get; set; }
         public DbSet<ContactEntity> Contacts { get; set; }
         public DbSet<OrganizationEntity> Organizations { get; set; }
-        public DbSet<AlbumEntity> Albums { get; set; }
+        //public DbSet<AlbumEntity> Albums { get; set; }
         public AppDbContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             Path = System.IO.Path.Join(path, "contacts.db");
-            Path = System.IO.Path.Join(path, "albums.db");
+            //Path = System.IO.Path.Join(path, "albums.db");
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -42,8 +42,8 @@ namespace Data
                 
             };
             PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
-            user.PasswordHash = passwordHasher.HashPassword(user, "1234Abcd$");
-            modelBuilder.Entity < IdentityUser>()
+            user.PasswordHash = passwordHasher.HashPassword(user, "1234Abcd!");
+            modelBuilder.Entity<IdentityUser>()
                 .HasData(user);
 
             // tworzenie roli admina
@@ -82,25 +82,45 @@ namespace Data
                     Description = "Uczelnia wyższa",
               
                 },
-                 new OrganizationEntity()
-                 {
-                     Id = 102,
-                     Name = "Comarch",
+                new OrganizationEntity()
+                {
+                    Id = 102,
+                    Name = "Comarch",
                     Description = "IT Company",
                    
-                 }
+                }
 
                 );
             modelBuilder.Entity<ContactEntity>().HasData(
-                new ContactEntity() { ContactId = 1, Name = "Adam", Email = "adam@wsei.pl", Phone = "354353637", Birth = DateTime.Parse("2000-10-10"), OrganizationId = 101 },
-                new ContactEntity() { ContactId = 2, Name = "Jakub", Email = "jakubstr@gmail.com", Phone = "123234345", Birth = DateTime.Parse("2002-03-12"), OrganizationId = 102 },
-                new ContactEntity() { ContactId = 3, Name = "Dylan", Email = "cooldylan@gmail.com", Phone = "456567678", Birth = DateTime.Parse("1999-11-23"), OrganizationId = 103 }
+                new ContactEntity() 
+                {
+                    ContactId = 1,
+                    Name = "Adam",
+                    Email = "adam@wsei.pl",
+                    Phone = "354353637",
+                    Birth = DateTime.Parse("2000-10-10"),
+                    OrganizationId = 101
+                },
+                new ContactEntity()
+                {
+                    ContactId = 2,
+                    Name = "Jakub",
+                    Email = "jakubstr@gmail.com",
+                    Phone = "123234345",
+                    Birth = DateTime.Parse("2002-03-12"),
+                    OrganizationId = 102
+                },
+                new ContactEntity()
+                {
+                    ContactId = 3,
+                    Name = "Dylan",
+                    Email = "cooldylan@gmail.com",
+                    Phone = "456567678",
+                    Birth = DateTime.Parse("1999-11-23"),
+                    OrganizationId = 103
+                }
                 );
-            modelBuilder.Entity<AlbumEntity>().HasData(
-                new AlbumEntity() { AlbumId = 1, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") },
-                new AlbumEntity() { AlbumId = 2, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") },
-                new AlbumEntity() { AlbumId = 3, Name = "...And Justice for All", Band = "Metallica", TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder", ReleaseDate = DateTime.Parse("1988-08-25"), Duration = DateTime.Parse("01:05") }
-                );
+            
             modelBuilder.Entity<OrganizationEntity>()
                 .OwnsOne(o => o.Address)
                 .HasData(
@@ -119,6 +139,34 @@ namespace Data
                     PostalCode = "36-160"
                 }
                 );
+            /*modelBuilder.Entity<AlbumEntity>().HasData(
+                new AlbumEntity()
+                {
+                    AlbumId = 1,
+                    Name = "...And Justice for All",
+                    Band = "Metallica",
+                    TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder",
+                    ReleaseDate = DateTime.Parse("1988-08-25"),
+                    Duration = DateTime.Parse("01:05")
+                },
+                new AlbumEntity()
+                {
+                    AlbumId = 2,
+                    Name = "...And Justice for All",
+                    Band = "Metallica",
+                    TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder",
+                    ReleaseDate = DateTime.Parse("1988-08-25"),
+                    Duration = DateTime.Parse("01:05")
+                },
+                new AlbumEntity()
+                {
+                    AlbumId = 3,
+                    Name = "...And Justice for All",
+                    Band = "Metallica",
+                    TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder",
+                    ReleaseDate = DateTime.Parse("1988-08-25"),
+                    Duration = DateTime.Parse("01:05") }
+                );*/
         }
 
     }
