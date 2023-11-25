@@ -15,18 +15,20 @@ namespace Data
         private string Path { get; set; }
         public DbSet<ContactEntity> Contacts { get; set; }
         public DbSet<OrganizationEntity> Organizations { get; set; }
-        //public DbSet<AlbumEntity> Albums { get; set; }
+        public DbSet<AlbumEntity> Albums { get; set; }
         public AppDbContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             Path = System.IO.Path.Join(path, "contacts.db");
-            //Path = System.IO.Path.Join(path, "albums.db");
+            Path = System.IO.Path.Join(path, "albums.db");
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Data source={Path}");
+            optionsBuilder.EnableSensitiveDataLogging();
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -91,7 +93,8 @@ namespace Data
                 }
 
                 );
-            modelBuilder.Entity<ContactEntity>().HasData(
+            modelBuilder.Entity<ContactEntity>()
+                .HasData(
                 new ContactEntity() 
                 {
                     ContactId = 1,
@@ -127,19 +130,20 @@ namespace Data
                 new
                 {
                     OrganizationEntityId = 101,
-                    City = "Kraków",
+                    City = "Cracow",
                     Street = "św. Filipa 17",
                     PostalCode = "31-150"
                 },
                 new
                 {
                     OrganizationEntityId = 102,
-                    City = "Comarch",
+                    City = "Cracow",
                     Street = "Rozwoju 1/4",
                     PostalCode = "36-160"
                 }
                 );
-            /*modelBuilder.Entity<AlbumEntity>().HasData(
+            modelBuilder.Entity<AlbumEntity>()
+                .HasData(
                 new AlbumEntity()
                 {
                     AlbumId = 1,
@@ -166,7 +170,7 @@ namespace Data
                     TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder",
                     ReleaseDate = DateTime.Parse("1988-08-25"),
                     Duration = DateTime.Parse("01:05") }
-                );*/
+                );
         }
 
     }

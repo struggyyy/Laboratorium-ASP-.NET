@@ -2,7 +2,7 @@
 using Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lab3.Models.Contact
+namespace Lab3.Models
 {
     public class EFContactService : IContactService
     {

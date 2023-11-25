@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Lab3.Models.Album
+namespace Lab3.Models
 {
     public interface IAlbumService
     {

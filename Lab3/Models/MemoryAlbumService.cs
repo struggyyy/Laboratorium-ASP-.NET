@@ -1,4 +1,4 @@
-﻿namespace Lab3.Models.Album;
+﻿namespace Lab3.Models;
 
 public class MemoryAlbumService : IAlbumService
 {

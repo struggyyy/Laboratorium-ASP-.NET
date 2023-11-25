@@ -1,6 +1,5 @@
 ﻿using Data.Entities;
 using Lab3.Models;
-using Lab3.Models.Contact;
 using Microsoft.EntityFrameworkCore;
 
 public class MemoryContactService : IContactService

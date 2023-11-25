@@ -1,6 +1,6 @@
 ﻿using Data.Entities;
 
-namespace Lab3.Models.Album
+namespace Lab3.Models
 {
     public class AlbumMapper
     {
