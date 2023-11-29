@@ -9,18 +9,17 @@
     Lista kontaktów
 </h1>
 <a class="btn btn-primary" asp-controller="Contact" asp-action="Create">
-    <a class="btn btn-primary" asp-controller="Contact" asp-action="CreateApi">
     Utwórz kontakt
 </a>
 
-@if (Model.Count > 0)
+@if (Model.Data.Count() > 0)
 {
     <table class="table">
         <thead>
             <tr>
-                <th>@Html.DisplayNameFor(i => Model[0].Name)</th>
-                <th>@Html.DisplayNameFor(i => Model[0].Email)</th>
-                <th>@Html.DisplayNameFor(i => Model[0].Priority)</th>
+                <th>@Html.DisplayNameFor(i => Model[0].Data.GetEnumerator().Current.Name</th>
+                <th>@Html.DisplayNameFor(i => Model[0].Data.GetEnumerator().Current.Email)</th>
+                <th>@Html.DisplayNameFor(i => Model[0].Data.GetEnumerator().Current.Priority)</th>
                 <th>Akcje</th>
             </tr>
         </thead>

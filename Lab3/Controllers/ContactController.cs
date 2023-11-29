@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Lab3.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;
@@ -74,6 +74,25 @@ namespace Lab3.Controllers
             }
             model.OrganizationList = CreateOrganizationItemList();
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult CreateApi()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult CreateApi(Contact model)
+        {
+            if (ModelState.IsValid)
+            {
+                _contactService.Add(model);
+                return RedirectToAction("Index");
+            }
+            
+            return View();
         }
 
         [HttpGet]

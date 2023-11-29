@@ -1,0 +1,70 @@
+﻿@model Contact
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Dodaj kontakt</h1>
+
+<form asp-controller="Contact" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Phone"></label>
+        <input class="form-control" asp-for="Phone" />
+        <span class="text-danger" asp-validation-for="Phone"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Birth"></label>
+        <input class="form-control" asp-for="Birth" />
+        <span class="text-danger" asp-validation-for="Birth"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Priority"></label>
+        <select asp-for="Priority" asp-items="@Html.GetEnumSelectList<Priority>()"></select>
+        <span class="text-danger" asp-validation-for="Priority"></span>
+    </div>
+
+    <input type="text" id="filter"/>
+    <select class="form-control" id="OrganizationId" ></select>
+
+    <div class="mb-3">
+        <button type="submit" class="btn-primary">Utwórz</button>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        const select = document.getElementById('OrganizationId');
+        const filter = document.getElementById('filter');
+        filter.onchange = function () {
+
+        fetch(`/api/organizations?q=${filter.value}`)
+            .then(response => response.json())
+            .then(json => {
+                select.innerHTML = "";
+                for (let item of json) {
+                    const option = document.createElement('option');
+                    option.setAttribute('value', item.id);
+                    option.innerText = item.name;
+                    select.appendChild(option);
+                }
+            });
+        }
+    </script>
+}
