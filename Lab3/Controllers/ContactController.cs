@@ -130,7 +130,8 @@ namespace Lab3.Controllers
 
         public IActionResult Details(int id)
         {
-            return View(_contactService.FindById(id));
+            var model = _contactService.FindById(id);
+            return model ....
         }
     }
 }
