@@ -1,38 +1,38 @@
-﻿using NuGet.Configuration;
+﻿using System.Net;
 
-namespace Lab3.Models
+namespace Lab3.Models;
+
+public class LastVisitCookie
 {
-    public class LastVisitCookie
+    private readonly RequestDelegate _next;
+    public static readonly string CookieName = "visit";
+
+    public LastVisitCookie(RequestDelegate next)
     {
-        public readonly RequestDelegate _next;
-        public static readonly string CookieName = "visit";
+        _next = next;
+    }
 
-        public LastVisitCookie(RequestDelegate next)
+    public async Task Invoke(HttpContext context)
+    {
+        string? cookie = context.Request.Cookies["visit"];
+        if (cookie is null)
         {
-            _next = next;
+            context.Items.Add(CookieName, "First visit");
         }
-        public async Task Invoke(HttpContext context)
+        else
         {
-            string? cookie = context.Request.Cookies["visit"];
-            if (cookie == null)
+            if (DateTime.TryParse(cookie, out var date))
             {
-                context.Items.Add(CookieName, "First visit");
-
-            } else
-            {
-                if (DateTime.TryParse(cookie, out var date))
-                {
-                    context.Items[CookieName] = date;
-                }
-                else
-                {
-                    context.Items[CookieName] = "Unknown date of last visit";
-                }
-
+                context.Items[CookieName] = date;
             }
-            CookieOptions option = new CookieOptions() { MaxAge = new TimeSpan(400,0,0,0), IsEssential = true};
-            context.Response.Cookies.Append(CookieName, DateTime.Now.ToString(), options);
-            await _next(context);
+            else
+            {
+                context.Items[CookieName] = "Unknown date of last visit";
+            }
         }
+
+        CookieOptions options = new CookieOptions() { MaxAge = new TimeSpan(400, 0, 0, 0), IsEssential = true };
+        context.Response.Cookies.Append(CookieName, DateTime.Now.ToString(), options);
+        await _next(context);
     }
 }

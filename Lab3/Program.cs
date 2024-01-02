@@ -1,5 +1,6 @@
 using Data;
 using Lab3.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lab3
 {
@@ -9,12 +10,10 @@ namespace Lab3
         {
             var builder = WebApplication.CreateBuilder(args);
 
-           // builder.Services.AddDefaultIdentity<IdentityUser>
-                //.AddRoles<IdentityRole>()
-                //.
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 
             // Add services to the container.
-            //nowy
+
             builder.Services.AddRazorPages();
             builder.Services.AddSession();
             builder.Services.AddControllersWithViews();
@@ -25,8 +24,6 @@ namespace Lab3
             builder.Services.AddTransient<IAlbumService, EFAlbumService>();
             builder.Services.AddDbContext<AppDbContext>();
             
-            
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

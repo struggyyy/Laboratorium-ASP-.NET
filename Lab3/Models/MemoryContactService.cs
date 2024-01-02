@@ -31,10 +31,17 @@ public class MemoryContactService : IContactService
     {
         return _items.Values.ToList();
     }
+
     public List<OrganizationEntity> FindAllOrganizations()
     {
         throw new NotImplementedException();
     }
+
+    public PagingList<Contact> FindPage(int page, int size)
+    {
+        throw new NotImplementedException();
+    }
+
     public Contact? FindById(int id)
     {
         return _items.ContainsKey(id) ? _items[id] : null;

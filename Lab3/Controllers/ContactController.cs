@@ -1,13 +1,17 @@
-﻿using Lab3.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Lab3.Models;
+using System.Reflection;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Reflection.Metadata.Ecma335;
+using Data.Migrations;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab3.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;
@@ -22,47 +26,43 @@ namespace Lab3.Controllers
         {
             return View(_contactService.FindAll());
         }
+
+        public IActionResult PagedIndex(int page = 1, int size = 1)
+        {
+            if (size < 1) return BadRequest();
+            return View(_contactService.FindPage(page, size));
+        }
+
         private List<SelectListItem> CreateOrganizationItemList()
         {
             var gr = new SelectListGroup()
             {
                 Name = "Organizacje",
             };
-            return _contactService.FindAllOrganizations().Select(e=> new SelectListItem()
+            var group = new SelectListGroup()
+            {
+                Name = "Brak",
+            };
+            return _contactService.FindAllOrganizations().Select(e => new SelectListItem()
             {
                 Text = e.Name,
                 Value = e.Id.ToString(),
-                Group = gr
-            })
-                .Append(new SelectListItem()
-                {
-                    Text = "Brak Organizacji",
-                    Value = "",
-                    Selected = true,
-                    Group = new SelectListGroup()
-                    {
-                        Name = "Brak"
-                    }
-                })
-                .ToList();
+                Group = gr,
+            }).Append(new SelectListItem()
+            {
+                Text = "Brak organizacji",
+                Value = "",
+                Selected = true,
+                Group = group,
+            }).ToList();
         }
-
         [HttpGet]
         public IActionResult Create()
         {
-            List<SelectListItem> organizations =
-                _contactService.FindAllOrganizations()
-                .Select(e=> new SelectListItem()
-                {
-                    Text = e.Name,
-                    Value = e.Id.ToString()
-                })
-                .ToList();
             Contact model = new Contact();
-            model.OrganizationList = organizations;
+            model.OrganizationList = CreateOrganizationItemList();
             return View(model);
         }
-        
 
         [HttpPost]
         public IActionResult Create(Contact model)
@@ -72,26 +72,6 @@ namespace Lab3.Controllers
                 _contactService.Add(model);
                 return RedirectToAction("Index");
             }
-            model.OrganizationList = CreateOrganizationItemList();
-            return View(model);
-        }
-
-        [HttpGet]
-        public IActionResult CreateApi()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public IActionResult CreateApi(Contact model)
-        {
-            if (ModelState.IsValid)
-            {
-                _contactService.Add(model);
-                return RedirectToAction("Index");
-            }
-            
             return View();
         }
 
@@ -131,8 +111,19 @@ namespace Lab3.Controllers
         public IActionResult Details(int id)
         {
             var model = _contactService.FindById(id);
-            return model ....
+
+            return model is null ? NotFound() : View(model);
+        }
+
+
+        public ActionResult CreateApi(Contact c)
+        {
+            if (ModelState.IsValid)
+            {
+                _contactService.Add(c);
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
         }
     }
 }
- 

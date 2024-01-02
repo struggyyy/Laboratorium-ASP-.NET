@@ -1,8 +1,11 @@
-﻿using Data.Entities;
-using Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Data;
+using Data.Entities;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.AccessControl;
+using Lab3.Models;
 
 namespace Lab3.Models
+
 {
     public class EFContactService : IContactService
     {
@@ -13,9 +16,9 @@ namespace Lab3.Models
             _context = context;
         }
 
-        public int Add(Contact contact)
+        public int Add(Contact model)
         {
-            var e = _context.Contacts.Add(ContactMapper.ToEntity(contact));
+            var e = _context.Contacts.Add(ContactMapper.ToEntity(model));
             _context.SaveChanges();
             return e.Entity.ContactId;
         }
@@ -23,7 +26,7 @@ namespace Lab3.Models
         public void DeleteById(int id)
         {
             var find = _context.Contacts.Find(id);
-            if (find != null)
+            if (find is not null)
             {
                 _context.Contacts.Remove(find);
                 _context.SaveChanges();
@@ -43,6 +46,18 @@ namespace Lab3.Models
             return _context.Organizations.ToList();
         }
 
+        public PagingList<Contact> FindPage(int page, int size)
+        {
+            return PagingList<Contact>.Create(
+                (p, s) => _context.Contacts
+                    .OrderBy(c => c.Name)
+                    .Skip((p - 1) * s)
+                    .Take(s)
+                    .Select(ContactMapper.FromEntity)
+                    .ToList()
+                , page, size, _context.Contacts.Count()
+            );
+        }
         public Contact? FindById(int id)
         {
             var find = _context.Contacts.Find(id);

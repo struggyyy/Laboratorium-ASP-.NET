@@ -142,6 +142,7 @@ namespace Data
                     PostalCode = "36-160"
                 }
                 );
+
             modelBuilder.Entity<AlbumEntity>()
                 .HasData(
                 new AlbumEntity()
@@ -169,7 +170,8 @@ namespace Data
                     Band = "Metallica",
                     TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder",
                     ReleaseDate = DateTime.Parse("1988-08-25"),
-                    Duration = DateTime.Parse("01:05") }
+                    Duration = DateTime.Parse("01:05") 
+                }
                 );
         }
 

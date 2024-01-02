@@ -1,5 +1,6 @@
 ﻿using Data.Entities;
-using Microsoft.AspNetCore.Mvc;
+using Lab3.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Lab3.Models
 {
@@ -11,5 +12,7 @@ namespace Lab3.Models
         void DeleteById(int id);
         void Update(Contact contact);
         List<OrganizationEntity> FindAllOrganizations();
+        PagingList<Contact> FindPage(int page, int size);
+
     }
 }
