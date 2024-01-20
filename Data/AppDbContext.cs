@@ -122,15 +122,6 @@ namespace Data
                     Phone = "123234345",
                     Birth = DateTime.Parse("2002-03-12"),
                     OrganizationId = 102
-                },
-                new ContactEntity()
-                {
-                    ContactId = 3,
-                    Name = "Dylan",
-                    Email = "cooldylan@gmail.com",
-                    Phone = "456567678",
-                    Birth = DateTime.Parse("1999-11-23"),
-                    OrganizationId = 103
                 }
                 );
             
