@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 namespace Lab3.Models;
 
-public class PagingList<T>
+/*public class PagingList<T>
 {
     public IEnumerable<T> Data { get; }
     public int TotalItems { get; }
@@ -46,8 +46,9 @@ public class PagingList<T>
         }
         return page;
     }
+}*/
 
-    /* public class PagingList<T>
+    public class PagingList<T>
     {
         public IEnumerable<T> Data { get; set; }
         public int Page { get; }
@@ -87,5 +88,4 @@ public class PagingList<T>
                 totalItems
             );
         }
-    } */
-}
+    }

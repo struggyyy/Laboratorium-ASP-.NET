@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231227185005_Identity")]
-    partial class Identity
+    [Migration("20240120150711_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
 
-            modelBuilder.Entity("Data.Entities.AlbumEntity", b =>
+            modelBuilder.Entity("AlbumEntity", b =>
                 {
                     b.Property<int>("AlbumId")
                         .ValueGeneratedOnAdd()
@@ -36,8 +36,7 @@ namespace Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("name");
+                        .HasColumnType("TEXT");
 
                     b.Property<uint>("Record")
                         .HasColumnType("INTEGER");
@@ -51,14 +50,14 @@ namespace Data.Migrations
 
                     b.HasKey("AlbumId");
 
-                    b.ToTable("albums");
+                    b.ToTable("Albums");
 
                     b.HasData(
                         new
                         {
                             AlbumId = 1,
                             Band = "Metallica",
-                            Duration = new DateTime(2023, 12, 27, 1, 5, 0, 0, DateTimeKind.Unspecified),
+                            Duration = new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified),
                             Name = "...And Justice for All",
                             Record = 0u,
                             ReleaseDate = new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -68,7 +67,7 @@ namespace Data.Migrations
                         {
                             AlbumId = 2,
                             Band = "Metallica",
-                            Duration = new DateTime(2023, 12, 27, 1, 5, 0, 0, DateTimeKind.Unspecified),
+                            Duration = new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified),
                             Name = "...And Justice for All",
                             Record = 0u,
                             ReleaseDate = new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -78,7 +77,7 @@ namespace Data.Migrations
                         {
                             AlbumId = 3,
                             Band = "Metallica",
-                            Duration = new DateTime(2023, 12, 27, 1, 5, 0, 0, DateTimeKind.Unspecified),
+                            Duration = new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified),
                             Name = "...And Justice for All",
                             Record = 0u,
                             ReleaseDate = new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -175,7 +174,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 102,
-                            Description = "IT Company",
+                            Description = "Przedsiębiorstwo IT",
                             Name = "Comarch"
                         });
                 });
@@ -208,8 +207,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "98b6f8bd-3d72-4f49-871d-d25510620d0e",
-                            ConcurrencyStamp = "98b6f8bd-3d72-4f49-871d-d25510620d0e",
+                            Id = "d5650e03-ee6e-4213-ad93-3eccaa6f802c",
+                            ConcurrencyStamp = "d5650e03-ee6e-4213-ad93-3eccaa6f802c",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -304,19 +303,35 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "08cf2a78-d4d1-4a78-8215-56e0f0e1fe07",
+                            Id = "1201580a-c6f2-4e7e-a035-d2665128ab64",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a7bb3bd6-d643-4f11-8ff2-d7dc328ffb21",
+                            ConcurrencyStamp = "8877145d-9d22-430f-8450-4b49fa19841d",
                             Email = "adam@wsei.edu.pl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADAM@WSEI.EDU.PL",
                             NormalizedUserName = "ADAM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBuUUvR2TcA44koGoEB990bSI0QVQ7x2QniceC3Z+hwjtTTcq9wdFG5fqWz40vs44g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOakDhVdSAV3HzrBWDi3z7rj/hgmcoZGW0KKqRs4igfEB/FRwjA6NdDciYQkC4AoQQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9ee595fc-84f3-4df2-a8bd-e768bcd92243",
+                            SecurityStamp = "eed3e848-525e-4433-982b-e5bf39bce9fc",
                             TwoFactorEnabled = false,
                             UserName = "adam"
+                        },
+                        new
+                        {
+                            Id = "bee58989-06a7-4417-94b8-d68544e22b28",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "057c579e-0417-4992-97c7-d15fdfd5d587",
+                            Email = "jakub@wsei.edu.pl",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JAKUB@WSEI.EDU.PL",
+                            NormalizedUserName = "JAKUB",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA/iTfPBcBgPFEWiWR1VpPLhWXFVDKb3MZVXBkq89NV+WIpwDgEJ5c5tFm20QP4FxA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1c91c707-c31f-462e-9d47-bd836bfa2673",
+                            TwoFactorEnabled = false,
+                            UserName = "Jakub"
                         });
                 });
 
@@ -382,8 +397,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "08cf2a78-d4d1-4a78-8215-56e0f0e1fe07",
-                            RoleId = "98b6f8bd-3d72-4f49-871d-d25510620d0e"
+                            UserId = "1201580a-c6f2-4e7e-a035-d2665128ab64",
+                            RoleId = "d5650e03-ee6e-4213-ad93-3eccaa6f802c"
                         });
                 });
 
@@ -445,14 +460,14 @@ namespace Data.Migrations
                                 new
                                 {
                                     OrganizationEntityId = 101,
-                                    City = "Cracow",
+                                    City = "Kraków",
                                     PostalCode = "31-150",
                                     Street = "św. Filipa 17"
                                 },
                                 new
                                 {
                                     OrganizationEntityId = 102,
-                                    City = "Cracow",
+                                    City = "Kraków",
                                     PostalCode = "36-160",
                                     Street = "Rozwoju 1/4"
                                 });

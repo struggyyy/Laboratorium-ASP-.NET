@@ -1,4 +1,7 @@
-﻿namespace Lab3.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+
+namespace Lab3.Models;
 
 public class MemoryAlbumService : IAlbumService
 {
@@ -32,12 +35,15 @@ public class MemoryAlbumService : IAlbumService
 
     public Album? FindById(int id)
     {
-        return _items[id];
+        return _items.ContainsKey(id) ? _items[id] : null;
     }
 
-    public void Update(Album item)
+    public void Update(Album model)
     {
-        item.PublicationDate = _items[item.Id].PublicationDate;
-        _items[item.Id] = item;
+        if (_items.ContainsKey(model.Id))
+        {
+            model.PublicationDate = _items[model.Id].PublicationDate;
+            _items[model.Id] = model;
+        }
     }
 }

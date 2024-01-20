@@ -1,0 +1,84 @@
+﻿@model PagingList<Album>
+<h1 class="mb-3">
+    Posty
+</h1>
+
+
+<div class="d-flex mb-4">
+    <a class="btn btn-primary rounded me-2" asp-controller="Post" asp-action="Create">
+        Dodaj album
+    </a>
+    <form method="get" asp-controller="Album" asp-action="PagedIndex">
+        <select id="filter" name="tagId" class="rounded" style="height: 38px; background-color: rgb(51, 51, 51); color: white;" onchange="this.form.submit()">
+        </select>
+    </form>
+</div>
+
+@if (Model.Data.Count() > 0)
+{
+    foreach (var item in @Model.Data)
+    {
+        <div style="background-color: rgb(51, 51, 51);
+               border-radius: 10px; box-shadow: 0 0 10px rgb(51, 51, 51);
+               color: white;"
+             class="p-3 mb-5">
+            <p class="mb-3">
+                @Html.DisplayNameFor(i => Model.Data.GetEnumerator().Current.Name): @item.Name
+
+            </p>
+            <p class="mb-3">
+                @Html.DisplayNameFor(i => Model.Data.GetEnumerator().Current.PublicationDate): @item.PublicationDate.ToString("yyyy-MM-dd")
+            </p>
+            <p class="mb-3">
+                @Html.DisplayNameFor(i => Model.Data.GetEnumerator().Current.Band): @item.Band
+            </p>
+            <a class="btn btn-primary rounded" asp-controller="Album" asp-action="Update" asp-route-id="@item.Id">Edytuj</a>
+            <a class="btn btn-dark rounded" asp-controller="Album" asp-action="Details" asp-route-id="@item.Id">Szczegóły</a>
+            <a class="btn btn-danger rounded" asp-controller="Album" asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+        </div>
+    }
+}
+
+<nav aria-label="Albums page navigation">
+    <ul class="pagination">
+        @if (Model.IsPrevious)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-controller="Album"
+                   asp-action="PagedIndex"
+                   asp-route-page="@(Model.Page - 1)"
+                   asp-route-size="@Model.Size">
+                    Poprzednia
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link">Poprzednia</a>
+            </li>
+        }
+        <li class="page-item disabled">
+            <a class="page-link">@Model.Page</a>
+        </li>
+        @if (Model.IsNext)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-controller="Album"
+                   asp-action="PagedIndex"
+                   asp-route-page="@(Model.Page + 1)"
+                   asp-route-size="@Model.Size">
+                    Następna
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link">Następna</a>
+            </li>
+        }
+    </ul>
+</nav>

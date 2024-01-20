@@ -8,16 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Views\AlbumEntities\Create.cshtml" />
-    <None Include="Views\AlbumEntities\Delete.cshtml" />
-    <None Include="Views\AlbumEntities\Details.cshtml" />
-    <None Include="Views\AlbumEntities\Edit.cshtml" />
-    <None Include="Views\AlbumEntities\Index.cshtml" />
-    <None Include="Views\ContactEntities\Create.cshtml" />
-    <None Include="Views\ContactEntities\Delete.cshtml" />
-    <None Include="Views\ContactEntities\Details.cshtml" />
-    <None Include="Views\ContactEntities\Edit.cshtml" />
-    <None Include="Views\ContactEntities\Index.cshtml" />
+    <Compile Remove="Views\AlbumEntities\**" />
+    <Compile Remove="Views\ContactEntities\**" />
+    <Content Remove="Views\AlbumEntities\**" />
+    <Content Remove="Views\ContactEntities\**" />
+    <EmbeddedResource Remove="Views\AlbumEntities\**" />
+    <EmbeddedResource Remove="Views\ContactEntities\**" />
+    <None Remove="Views\AlbumEntities\**" />
+    <None Remove="Views\ContactEntities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AlbumEntitiesController.cs" />
+    <Compile Remove="Controllers\ContactEntitiesController.cs" />
   </ItemGroup>
 
   <ItemGroup>

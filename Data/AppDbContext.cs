@@ -21,19 +21,18 @@ namespace Data
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             Path = System.IO.Path.Join(path, "contacts.db");
-            Path = System.IO.Path.Join(path, "albums.db");
 
-        }
+         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Data source={Path}");
-            optionsBuilder.EnableSensitiveDataLogging();
+            //optionsBuilder.EnableSensitiveDataLogging();
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            var user = new IdentityUser()
+            var admin = new IdentityUser()
             {
                 Id = Guid.NewGuid().ToString(),
                 UserName = "adam",
@@ -43,10 +42,23 @@ namespace Data
                 EmailConfirmed = true,
                 
             };
+
+            var user = new IdentityUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = "Jakub",
+                NormalizedUserName = "JAKUB",
+                Email = "jakub@wsei.edu.pl",
+                NormalizedEmail = "JAKUB@WSEI.EDU.PL",
+                EmailConfirmed = true,
+            };
             PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
+
+            admin.PasswordHash = passwordHasher.HashPassword(admin, "1234Abcd!");
             user.PasswordHash = passwordHasher.HashPassword(user, "1234Abcd!");
-            modelBuilder.Entity<IdentityUser>()
-                .HasData(user);
+
+            modelBuilder.Entity<IdentityUser>().HasData(admin);
+            modelBuilder.Entity<IdentityUser>().HasData(user);
 
             // tworzenie roli admina
             var adminRole = new IdentityRole()
@@ -65,7 +77,7 @@ namespace Data
                 new IdentityUserRole<string>()
                 {
                     RoleId = adminRole.Id,
-                    UserId = user.Id
+                    UserId = admin.Id
                 }
             );
             
@@ -88,10 +100,8 @@ namespace Data
                 {
                     Id = 102,
                     Name = "Comarch",
-                    Description = "IT Company",
-                   
+                    Description = "Przedsiębiorstwo IT",
                 }
-
                 );
             modelBuilder.Entity<ContactEntity>()
                 .HasData(
@@ -130,14 +140,14 @@ namespace Data
                 new
                 {
                     OrganizationEntityId = 101,
-                    City = "Cracow",
+                    City = "Kraków",
                     Street = "św. Filipa 17",
                     PostalCode = "31-150"
                 },
                 new
                 {
                     OrganizationEntityId = 102,
-                    City = "Cracow",
+                    City = "Kraków",
                     Street = "Rozwoju 1/4",
                     PostalCode = "36-160"
                 }

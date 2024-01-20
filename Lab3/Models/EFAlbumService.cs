@@ -1,6 +1,7 @@
 ﻿using Data.Entities;
 using Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace Lab3.Models
 {
@@ -11,6 +12,14 @@ namespace Lab3.Models
         public EFAlbumService(AppDbContext context)
         {
             _context = context;
+        }
+
+        public PagingList<Album> FindPage(int page, int size, List<Album> posts)
+        {
+            return PagingList<Album>.Create(
+                (p, s) => posts.OrderBy(c => c.PublicationDate).Skip((p - 1) * s).Take(s)
+                , page, size, posts.Count()
+            );
         }
 
         public int Add(Album album)

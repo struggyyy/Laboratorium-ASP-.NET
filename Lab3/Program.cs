@@ -17,8 +17,8 @@ namespace Lab3
             builder.Services.AddRazorPages();
             builder.Services.AddSession();
             builder.Services.AddControllersWithViews();
-            builder.Services.AddSingleton<IContactService, MemoryContactService>();
-            builder.Services.AddSingleton<IAlbumService, MemoryAlbumService>();
+            //builder.Services.AddSingleton<IContactService, MemoryContactService>();
+            //builder.Services.AddSingleton<IAlbumService, MemoryAlbumService>();
             builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();
             builder.Services.AddTransient<IContactService, EFContactService>();
             builder.Services.AddTransient<IAlbumService, EFAlbumService>();
@@ -39,6 +39,7 @@ namespace Lab3
 
             app.UseRouting();
             app.UseMiddleware<LastVisitCookie>();
+
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();

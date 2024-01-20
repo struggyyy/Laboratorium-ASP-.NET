@@ -2,7 +2,7 @@ using Lab3.Controllers;
 using Lab3.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ContactControllerTest
+namespace Test1
 {
     public class ContactControllerTest
     {

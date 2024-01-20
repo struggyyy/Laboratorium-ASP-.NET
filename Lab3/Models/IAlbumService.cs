@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace Lab3.Models
 {
     public interface IAlbumService
     {
-        int Add(Album album);
+        int Add(Album model);
         Album? FindById(int id);
         List<Album> FindAll();
         void Delete(int id);
-        void Update(Album album);
+        void Update(Album model);
     }
 }
