@@ -48,8 +48,8 @@ namespace Data
                 Id = Guid.NewGuid().ToString(),
                 UserName = "Jakub",
                 NormalizedUserName = "JAKUB",
-                Email = "jakub@wsei.edu.pl",
-                NormalizedEmail = "JAKUB@WSEI.EDU.PL",
+                Email = "jakubstr@gmail.com",
+                NormalizedEmail = "JAKUBSTR@GMAIL.COM",
                 EmailConfirmed = true,
             };
             PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
