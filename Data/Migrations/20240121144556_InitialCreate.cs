@@ -220,23 +220,23 @@ namespace Data.Migrations
                 columns: new[] { "AlbumId", "Band", "Duration", "Name", "Record", "ReleaseDate", "TrackList" },
                 values: new object[,]
                 {
-                    { 1, "Metallica", new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified), "...And Justice for All", 0u, new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder" },
-                    { 2, "Metallica", new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified), "...And Justice for All", 0u, new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder" },
-                    { 3, "Metallica", new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified), "...And Justice for All", 0u, new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder" }
+                    { 1, "Metallica", new DateTime(2024, 1, 21, 1, 5, 0, 0, DateTimeKind.Unspecified), "...And Justice for All", 0u, new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder" },
+                    { 2, "The Cure", new DateTime(2024, 1, 21, 1, 7, 0, 0, DateTimeKind.Unspecified), "The Cure Greatest Hits", 0u, new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1. Boys Don't Cry 2. A Forest 3. The Walk" },
+                    { 3, "Depeche Mode", new DateTime(2024, 1, 21, 1, 1, 0, 0, DateTimeKind.Unspecified), "Speak And Spell", 0u, new DateTime(1981, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "1. New Life 2. I Sometimes Wish I Was Dead 3. Puppets" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6e183791-c9ea-4e1d-84f0-66c607a4adee", "6e183791-c9ea-4e1d-84f0-66c607a4adee", "admin", "ADMIN" });
+                values: new object[] { "1607007a-7eac-454f-8d22-b4e7f21001bb", "1607007a-7eac-454f-8d22-b4e7f21001bb", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "959e5422-d0f6-4e8a-98d8-d341b0f6d289", 0, "9c0ee890-64b5-4bdd-86f2-0d76a1188565", "jakub@wsei.edu.pl", true, false, null, "JAKUB@WSEI.EDU.PL", "JAKUB", "AQAAAAEAACcQAAAAEOJIywZRB2OPQt+i2Zun4c6gbl8Us7YDDTPpqXh8a/4E5/i35EpgJizKFt8TbTVYRA==", null, false, "8fc50a4c-f9cd-4ef1-8952-dc0859c098b9", false, "Jakub" },
-                    { "e8b24e81-ca9e-4290-a231-d5598ec241c3", 0, "4449f75a-3a4d-4ea6-b2d0-0a68f5fba572", "adam@wsei.edu.pl", true, false, null, "ADAM@WSEI.EDU.PL", "ADAM", "AQAAAAEAACcQAAAAEPz4RMUg6a99AHj8ZlMyq2sZKs8EgmIDr5F040vC0lY1BbmABS0Frd1bS6BMIN9HXw==", null, false, "54b2895d-8034-453a-8866-21f5b198b5fb", false, "adam" }
+                    { "c849978c-f92f-4e56-9e42-18990d83b405", 0, "1a223efa-22c8-403a-82b4-ee24cee1caa8", "adam@wsei.edu.pl", true, false, null, "ADAM@WSEI.EDU.PL", "ADAM", "AQAAAAEAACcQAAAAEG8c+ssszFPIrrZyLCQ3wkwduABsZ28qdEZqJ5XX2r9liIQDmhqgn3YbEeLUPiyVhA==", null, false, "d3199285-2b59-4c47-96b8-45d20aad742e", false, "adam" },
+                    { "e11f9d56-dd73-4e67-87b3-a0f7f02e95b9", 0, "951f02cb-abdb-4ce5-b755-b33f932a1e24", "jakub@wsei.edu.pl", true, false, null, "JAKUB@WSEI.EDU.PL", "JAKUB", "AQAAAAEAACcQAAAAEBfw7Lx6Orefgj7xBpjmqOsVNKQKJPNDnUPcadHOh4rx+vCiE5/AAi4Mm0Y06zTdYA==", null, false, "0f060729-5670-4a22-892b-30b0b196b48d", false, "Jakub" }
                 });
 
             migrationBuilder.InsertData(
@@ -251,14 +251,14 @@ namespace Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "6e183791-c9ea-4e1d-84f0-66c607a4adee", "e8b24e81-ca9e-4290-a231-d5598ec241c3" });
+                values: new object[] { "1607007a-7eac-454f-8d22-b4e7f21001bb", "c849978c-f92f-4e56-9e42-18990d83b405" });
 
             migrationBuilder.InsertData(
                 table: "contacts",
                 columns: new[] { "ContactId", "Birth", "Email", "name", "OrganizationId", "Phone" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2000, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "adam@wsei.pl", "Adam", 101, "354353637" },
+                    { 1, new DateTime(2000, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "adam@wsei.edu.pl", "Adam", 101, "354353637" },
                     { 2, new DateTime(2002, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "jakubstr@gmail.com", "Jakub", 102, "123234345" }
                 });
 

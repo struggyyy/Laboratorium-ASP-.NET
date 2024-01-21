@@ -109,7 +109,7 @@ namespace Data
                 {
                     ContactId = 1,
                     Name = "Adam",
-                    Email = "adam@wsei.pl",
+                    Email = "adam@wsei.edu.pl",
                     Phone = "354353637",
                     Birth = DateTime.Parse("2000-10-10"),
                     OrganizationId = 101
@@ -158,20 +158,20 @@ namespace Data
                 new AlbumEntity()
                 {
                     AlbumId = 2,
-                    Name = "...And Justice for All",
-                    Band = "Metallica",
-                    TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder",
-                    ReleaseDate = DateTime.Parse("1988-08-25"),
-                    Duration = DateTime.Parse("01:05")
+                    Name = "The Cure Greatest Hits",
+                    Band = "The Cure",
+                    TrackList = "1. Boys Don't Cry 2. A Forest 3. The Walk",
+                    ReleaseDate = DateTime.Parse("2001-01-01"),
+                    Duration = DateTime.Parse("01:07")
                 },
                 new AlbumEntity()
                 {
                     AlbumId = 3,
-                    Name = "...And Justice for All",
-                    Band = "Metallica",
-                    TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder",
-                    ReleaseDate = DateTime.Parse("1988-08-25"),
-                    Duration = DateTime.Parse("01:05") 
+                    Name = "Speak And Spell",
+                    Band = "Depeche Mode",
+                    TrackList = "1. New Life 2. I Sometimes Wish I Was Dead 3. Puppets",
+                    ReleaseDate = DateTime.Parse("1981-11-02"),
+                    Duration = DateTime.Parse("01:01") 
                 }
                 );
         }

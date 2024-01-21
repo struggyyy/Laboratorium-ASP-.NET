@@ -31,30 +31,6 @@ namespace Lab3.Controllers
             return View(_albumService.FindPage(page, size));
         }
 
-        /*private List<SelectListItem> CreateOrganizationItemList()
-        {
-            var gr = new SelectListGroup()
-            {
-                Name = "Organizacje",
-            };
-            var group = new SelectListGroup()
-            {
-                Name = "Brak",
-            };
-            return _albumService.FindAllOrganizations().Select(e => new SelectListItem()
-            {
-                Text = e.Name,
-                Value = e.Id.ToString(),
-                Group = gr,
-            }).Append(new SelectListItem()
-            {
-                Text = "Brak organizacji",
-                Value = "",
-                Selected = true,
-                Group = group,
-            }).ToList();
-        }
-        */
 
         [HttpGet]
         public IActionResult Create()

@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
 	  <Nullable>enable</Nullable>
 	  <ImplicitUsings>enable</ImplicitUsings>
-	  <RootNamespace>Lab3</RootNamespace>
+	  <RootNamespace> ASP .NETLab3</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +21,10 @@
   <ItemGroup>
     <Compile Remove="Controllers\AlbumEntitiesController.cs" />
     <Compile Remove="Controllers\ContactEntitiesController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Privacy.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

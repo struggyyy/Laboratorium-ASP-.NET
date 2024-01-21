@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240120185301_InitialCreate")]
+    [Migration("20240121144556_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -57,7 +57,7 @@ namespace Data.Migrations
                         {
                             AlbumId = 1,
                             Band = "Metallica",
-                            Duration = new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified),
+                            Duration = new DateTime(2024, 1, 21, 1, 5, 0, 0, DateTimeKind.Unspecified),
                             Name = "...And Justice for All",
                             Record = 0u,
                             ReleaseDate = new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -66,22 +66,22 @@ namespace Data.Migrations
                         new
                         {
                             AlbumId = 2,
-                            Band = "Metallica",
-                            Duration = new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified),
-                            Name = "...And Justice for All",
+                            Band = "The Cure",
+                            Duration = new DateTime(2024, 1, 21, 1, 7, 0, 0, DateTimeKind.Unspecified),
+                            Name = "The Cure Greatest Hits",
                             Record = 0u,
-                            ReleaseDate = new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder"
+                            ReleaseDate = new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrackList = "1. Boys Don't Cry 2. A Forest 3. The Walk"
                         },
                         new
                         {
                             AlbumId = 3,
-                            Band = "Metallica",
-                            Duration = new DateTime(2024, 1, 20, 1, 5, 0, 0, DateTimeKind.Unspecified),
-                            Name = "...And Justice for All",
+                            Band = "Depeche Mode",
+                            Duration = new DateTime(2024, 1, 21, 1, 1, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Speak And Spell",
                             Record = 0u,
-                            ReleaseDate = new DateTime(1988, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackList = "1.Blackened 2. ...And Justice for All 3. Eye of the Beholder"
+                            ReleaseDate = new DateTime(1981, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrackList = "1. New Life 2. I Sometimes Wish I Was Dead 3. Puppets"
                         });
                 });
 
@@ -121,7 +121,7 @@ namespace Data.Migrations
                         {
                             ContactId = 1,
                             Birth = new DateTime(2000, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "adam@wsei.pl",
+                            Email = "adam@wsei.edu.pl",
                             Name = "Adam",
                             OrganizationId = 101,
                             Phone = "354353637"
@@ -198,8 +198,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6e183791-c9ea-4e1d-84f0-66c607a4adee",
-                            ConcurrencyStamp = "6e183791-c9ea-4e1d-84f0-66c607a4adee",
+                            Id = "1607007a-7eac-454f-8d22-b4e7f21001bb",
+                            ConcurrencyStamp = "1607007a-7eac-454f-8d22-b4e7f21001bb",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -294,33 +294,33 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e8b24e81-ca9e-4290-a231-d5598ec241c3",
+                            Id = "c849978c-f92f-4e56-9e42-18990d83b405",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4449f75a-3a4d-4ea6-b2d0-0a68f5fba572",
+                            ConcurrencyStamp = "1a223efa-22c8-403a-82b4-ee24cee1caa8",
                             Email = "adam@wsei.edu.pl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADAM@WSEI.EDU.PL",
                             NormalizedUserName = "ADAM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPz4RMUg6a99AHj8ZlMyq2sZKs8EgmIDr5F040vC0lY1BbmABS0Frd1bS6BMIN9HXw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG8c+ssszFPIrrZyLCQ3wkwduABsZ28qdEZqJ5XX2r9liIQDmhqgn3YbEeLUPiyVhA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "54b2895d-8034-453a-8866-21f5b198b5fb",
+                            SecurityStamp = "d3199285-2b59-4c47-96b8-45d20aad742e",
                             TwoFactorEnabled = false,
                             UserName = "adam"
                         },
                         new
                         {
-                            Id = "959e5422-d0f6-4e8a-98d8-d341b0f6d289",
+                            Id = "e11f9d56-dd73-4e67-87b3-a0f7f02e95b9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9c0ee890-64b5-4bdd-86f2-0d76a1188565",
+                            ConcurrencyStamp = "951f02cb-abdb-4ce5-b755-b33f932a1e24",
                             Email = "jakub@wsei.edu.pl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "JAKUB@WSEI.EDU.PL",
                             NormalizedUserName = "JAKUB",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOJIywZRB2OPQt+i2Zun4c6gbl8Us7YDDTPpqXh8a/4E5/i35EpgJizKFt8TbTVYRA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBfw7Lx6Orefgj7xBpjmqOsVNKQKJPNDnUPcadHOh4rx+vCiE5/AAi4Mm0Y06zTdYA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8fc50a4c-f9cd-4ef1-8952-dc0859c098b9",
+                            SecurityStamp = "0f060729-5670-4a22-892b-30b0b196b48d",
                             TwoFactorEnabled = false,
                             UserName = "Jakub"
                         });
@@ -388,8 +388,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "e8b24e81-ca9e-4290-a231-d5598ec241c3",
-                            RoleId = "6e183791-c9ea-4e1d-84f0-66c607a4adee"
+                            UserId = "c849978c-f92f-4e56-9e42-18990d83b405",
+                            RoleId = "1607007a-7eac-454f-8d22-b4e7f21001bb"
                         });
                 });
 

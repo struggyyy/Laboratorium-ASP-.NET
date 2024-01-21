@@ -53,7 +53,6 @@ namespace Lab3.Models
             _context.Albums.Update(AlbumMapper.ToEntity(album));
         }
 
-        ////////////
         public List<OrganizationEntity> FindAllOrganizations()
         {
             return _context.Organizations.ToList();
