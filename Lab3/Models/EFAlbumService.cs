@@ -52,5 +52,24 @@ namespace Lab3.Models
         {
             _context.Albums.Update(AlbumMapper.ToEntity(album));
         }
+
+        ////////////
+        public List<OrganizationEntity> FindAllOrganizations()
+        {
+            return _context.Organizations.ToList();
+        }
+
+        public PagingList<Album> FindPage(int page, int size)
+        {
+            return PagingList<Album>.Create(
+                (p, s) => _context.Albums
+                    .OrderBy(c => c.Name)
+                    .Skip((p - 1) * s)
+                    .Take(s)
+                    .Select(AlbumMapper.FromEntity)
+                    .ToList()
+                , page, size, _context.Albums.Count()
+            );
+        }
     }
 }

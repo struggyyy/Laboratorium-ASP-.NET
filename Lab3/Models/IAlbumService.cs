@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 
 namespace Lab3.Models
@@ -10,5 +11,7 @@ namespace Lab3.Models
         List<Album> FindAll();
         void Delete(int id);
         void Update(Album model);
+        List<OrganizationEntity> FindAllOrganizations();
+        PagingList<Album> FindPage(int page, int size);
     }
 }

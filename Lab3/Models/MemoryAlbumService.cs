@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace Lab3.Models;
@@ -26,6 +27,16 @@ public class MemoryAlbumService : IAlbumService
     public void Delete(int id)
     {
         _items.Remove(id);
+    }
+
+    public List<OrganizationEntity> FindAllOrganizations()
+    {
+        throw new NotImplementedException();
+    }
+
+    public PagingList<Album> FindPage(int page, int size)
+    {
+        throw new NotImplementedException();
     }
 
     public List<Album> FindAll()

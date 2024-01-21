@@ -7,6 +7,7 @@ using System.Text.Json;
 
 namespace Lab3.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AlbumController : Controller
     {
         private readonly IAlbumService _albumService;
@@ -18,15 +19,49 @@ namespace Lab3.Controllers
             _dateTimeProvider = dateTimeProvider;
         }
 
+        [AllowAnonymous]
+        public IActionResult Index()
+        {
+            return View(_albumService.FindAll());
+        }
 
-        [Authorize]
+        public IActionResult PagedIndex(int page = 1, int size = 1)
+        {
+            if (size < 1) return BadRequest();
+            return View(_albumService.FindPage(page, size));
+        }
+
+        /*private List<SelectListItem> CreateOrganizationItemList()
+        {
+            var gr = new SelectListGroup()
+            {
+                Name = "Organizacje",
+            };
+            var group = new SelectListGroup()
+            {
+                Name = "Brak",
+            };
+            return _albumService.FindAllOrganizations().Select(e => new SelectListItem()
+            {
+                Text = e.Name,
+                Value = e.Id.ToString(),
+                Group = gr,
+            }).Append(new SelectListItem()
+            {
+                Text = "Brak organizacji",
+                Value = "",
+                Selected = true,
+                Group = group,
+            }).ToList();
+        }
+        */
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
         [HttpPost]
         public IActionResult Create(Album model)
         {
@@ -39,41 +74,41 @@ namespace Lab3.Controllers
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpGet]
         public IActionResult Update(int id)
         {
             return View(_albumService.FindById(id));
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPost]
         public IActionResult Update(Album model)
         {
             if (ModelState.IsValid)
             {
                 _albumService.Update(model);
-                return RedirectToAction("Index");
+                return RedirectToAction("PagedIndex");
             }
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpGet]
         public IActionResult Delete(int id)
         {
             return View(_albumService.FindById(id));
         }
 
-        [Authorize(Roles = "admin")]
+        
         [HttpPost]
         public IActionResult Delete(Album model)
         {
             _albumService.Delete(model.Id);
-            return RedirectToAction("Index");
+            return RedirectToAction("PagedIndex");
         }
 
-        [Authorize]
+        
         [HttpGet]
         public IActionResult Details(int id)
         {
